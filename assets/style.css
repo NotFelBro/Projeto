@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --aside: #F7F5F2;
+    --section: #FFFFFF;
+    --header: #F7F5F2;
+    --icone: #32A961;
+    --nmicone: #42B996;
+    --icones: #000000;
+    --msgs2: #7C7175;
+    --msg1: #1C2030;
+    --card2: #D8F8D2;
+    --card1: #FFFFFF;
+    --zap: #32A961;
+}
