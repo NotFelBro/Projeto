@@ -65,6 +65,30 @@ section {
     grid-column: 2 / 3;
 }
 
+.container-titulo{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.container-titulo > h1 {
+    color: var(--icone);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-newchat {
+    gap: 10px;
+}
+
+.btn-newchat > img {
+    padding: 10px;
+}
+
+.btn-newchat > img:hover {
+    background-color: var(--icone2);
+    border-radius: 50%;
+}
+
 main {
     background-color: burlywood;
     grid-row: 2
