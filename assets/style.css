@@ -39,6 +39,36 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-left: 1px solid var(--icone2);
+}
+
+.foto-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 1%;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.foto-contato-header {
+    background-color: #14603E;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
 }
 
 nav {
@@ -248,5 +278,9 @@ input:hover {
 main {
     grid-column: 3 / 5;
     grid-row: 2 / 2;
-    background-color: var(--section);
+    background-image: url(./imgs/whatsapp_bg.png);
 }
+
+
+
+
