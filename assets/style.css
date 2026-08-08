@@ -295,10 +295,6 @@ main {
     padding: 20px 40px;
 }
 
-.chat-mensagem > .mensagem:first-child {
-    margin-top: auto;
-}
-
 .mesagem-recebida {
     display: grid;
     grid-template-columns: 1fr 24px;
@@ -338,6 +334,8 @@ main {
 .balao > p {
     font-size: 14px;
     color: var(--msg1);
+    overflow-wrap: break-word;
+    min-width: 0;
 }
 
 .balao > .hora-msg {
