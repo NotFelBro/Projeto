@@ -279,6 +279,71 @@ main {
     grid-column: 3 / 5;
     grid-row: 2 / 2;
     background-image: url(./imgs/whatsapp_bg.png);
+    display: flex;
+    flex-direction:column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.chat-mensagens {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: grid;
+    align-content: end;
+    gap: 12px;
+    padding: 20px 40px;
+}
+
+.chat-mensagem > .mensagem:first-child {
+    margin-top: auto;
+}
+
+.mesagem-recebida {
+    display: grid;
+    grid-template-columns: 1fr 24px;
+}
+
+.mensagem-enviada {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+}
+
+.mensagem-recebida > .balao {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.mensagem-enviada > .balao {
+    grid-column: 2;
+    justify-self: end;
+} 
+
+.balao {
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: var(--card1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.mensagem-enviada > .balao {
+    background-color: var(--card2);
+}
+
+.balao > p {
+    font-size: 14px;
+    color: var(--msg1);
+}
+
+.balao > .hora-msg {
+    font-size: 11px;
+    color: var(--msgs2);
+    white-space: nowrap;
 }
 
 
