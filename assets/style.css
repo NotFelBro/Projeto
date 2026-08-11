@@ -289,13 +289,18 @@ main {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
-    display: grid;
-    align-content: end;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
     padding: 20px 40px;
 }
 
-.mesagem-recebida {
+.chat-mensagens::before {
+    content: "";
+    margin-top: auto;
+}
+
+.mensagem-recebida {
     display: grid;
     grid-template-columns: 1fr 24px;
 }
@@ -313,9 +318,10 @@ main {
 .mensagem-enviada > .balao {
     grid-column: 2;
     justify-self: end;
-} 
+}
 
 .balao {
+    position: relative;
     width: fit-content;
     max-width: 100%;
     display: flex;
@@ -327,8 +333,35 @@ main {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+.mensagem-recebida > .balao {
+    border-top-left-radius: 0;
+}
+
 .mensagem-enviada > .balao {
     background-color: var(--card2);
+    border-top-right-radius: 0;
+}
+
+.mensagem-recebida > .balao::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -7px;
+    width: 10px;
+    height: 13px;
+    background-color: var(--card1);
+    clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.mensagem-enviada > .balao::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -7px;
+    width: 10px;
+    height: 13px;
+    background-color: var(--card2);
+    clip-path: polygon(0 0, 0 100%, 100% 0);
 }
 
 .balao > p {
@@ -338,11 +371,29 @@ main {
     min-width: 0;
 }
 
+.mensagem-enviada > .balao > p {
+    color: var(--texto-enviado);
+}
+
 .balao > .hora-msg {
     font-size: 11px;
     color: var(--msgs2);
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
+
+.mensagem-enviada > .balao > .hora-msg {
+    color: var(--hora-enviado);
+}
+
+.balao > .hora-msg > .checks {
+    color: var(--check-lido);
+    font-size: 14px;
+    line-height: 1;
+}
+
 
 
 
