@@ -386,7 +386,7 @@ main {
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 4px;
 }
 
 .mensagem-enviada > .balao > .hora-msg {
@@ -436,18 +436,12 @@ main {
     justify-content: center;
     color: var(--rodape-icone);
     cursor: pointer;
-    transition: background-color 0.15s ease;
 }
 
 .icone-rodape > img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.icone-rodape:hover {
-    background-color: var(--icone2);
-    border-radius: 50%;
 }
 
 .icone-rodape:hover > img {
