@@ -1,4 +1,4 @@
-const usuarios = {
+export const usuarios = {
   "whats-users": [
     {
       id: 1,
@@ -603,12 +603,22 @@ console.table(usuarios["whats-users"][0].contacts[0].messages);
 
 /* listando contatos */
 
-function listarUsuarios(usuarios) {
-  console.table(user);
+export function listarUsuarios() {
+  console.table(usuarios["whats-users"]);
 }
 
-const usuario = [
-  {id: 4, account: "Jonathan Xaxier", nickname: "Joe", }
-];
+// listarUsuarios();
 
-mostrarUsuarios(usuarios);
+/* função que receber o indice do usuario no console table todos os contatos dele */ 
+
+export function indiceUsuario(usuarioID) {
+  console.table(usuarios['whats-users'][usuarioID].contacts);
+}
+
+// indiceUsuario(0);
+
+/* função que recebe o indice do usuario e do contato e liste todas as mensagens */ 
+
+export function listarMensagens(usuarioID, contatoID){
+  console.table(usuarios['whats-users'][usuarioID].contacts[contatoID].messages);
+}

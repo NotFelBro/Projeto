@@ -29,12 +29,17 @@
     --iconeperfil: #24D366;
 }
 
+html {
+    overflow: hidden;
+}
+
 body {
     width: 100dvw;
     height: 100dvh;
     display: grid;
-    grid-template-columns: 60px 460px 1fr 2fr;
+    grid-template-columns: 60px 460px minmax(0, 1fr) minmax(0, 2fr);
     grid-template-rows: 50px 1fr;
+    overflow: hidden;
 }
 
 header {
@@ -154,7 +159,7 @@ section {
     border-radius: 50%;
 }
 
-form {
+.form-pesquisa {
     width: 100%;
     height: 50px;
     display: flex;
@@ -163,7 +168,7 @@ form {
     padding: 15px 5px 0 5px;
 }
 
-form > input {
+.form-pesquisa > input {
     width: 97%;
     height: 45px;
     border: none;
@@ -282,10 +287,11 @@ input:hover {
 
 main {
     grid-column: 3 / 5;
-    grid-row: 2 / 2;
+    grid-row: 2 / 3;
     background-image: url(./imgs/whatsapp_bg.png);
     display: flex;
     flex-direction:column;
+    min-width: 0;
     min-height: 0;
     overflow: hidden;
 }
@@ -307,12 +313,12 @@ main {
 
 .mensagem-recebida {
     display: grid;
-    grid-template-columns: 1fr 24px;
+    grid-template-columns: minmax(0, 1fr) 24px;
 }
 
 .mensagem-enviada {
     display: grid;
-    grid-template-columns: 24px 1fr;
+    grid-template-columns: 24px minmax(0, 1fr);
 }
 
 .mensagem-recebida > .balao {
@@ -328,7 +334,8 @@ main {
 .balao {
     position: relative;
     width: fit-content;
-    max-width: 100%;
+    max-width: 65%;
+    min-width: 0;
     display: flex;
     align-items: flex-end;
     gap: 10px;
@@ -393,34 +400,40 @@ main {
     color: var(--hora-enviado);
 }
 
-.balao > .hora-msg > .checks {
-    color: var(--check-lido);
-    font-size: 14px;
-    line-height: 1;
-}
-
 .chat-input {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin: 0 40px 14px 40px;
-    padding: 10px 16px;
-    background-color: var(--rodape-input-bg);
-    border-radius: 24px;
+    gap: 12px;
+    min-width: 0;
+    margin: 10px 12px;
+    padding: 8px 14px;
+    background-color: var(--section);
+    border-radius: 26px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-.chat-input > input {
+.campo-texto {
     flex: 1 1 auto;
     min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.campo-texto > input {
+    width: 100%;
+    height: auto;
+    min-width: 0;
     border: none;
-    background: transparent;
+    background: none;
     outline: none;
     font-size: 15px;
+    line-height: 1.4;
+    padding: 6px 0;
     color: var(--texto-enviada);
 }
 
-.chat-input > input::placeholder {
+.campo-texto > input::placeholder {
     color: var(--rodape-icone);
 }
 
@@ -442,13 +455,13 @@ main {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
 }
 
 .icone-rodape:hover > img {
     opacity: 0.85;
 }
 
-
-
-
-
+.icone-enviar {
+    color: var(--zap);
+}
