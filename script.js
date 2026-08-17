@@ -53,3 +53,20 @@ function criarBalaoMensagem(texto, horario) {
 
     return mensagem;
 }
+
+function enviarMensagem(evento) {
+    evento.preventDefault();
+
+    const texto = campoMensagem.ariaValueMax.trim();
+    if (!texto) return;
+
+    const balao = criarBalaoMensagem(texto, obterHoraAtual());
+    listaMensagens.appendChild(balao);
+
+    campoMensagem.value = "";
+    campoMensagem.focus();
+    listaMensagens.scrollTop = listaMensagens.scrollHeight;
+}
+
+formEnviarMensagem.addEventListener("submit", enviarMensagem);
+botaoEnviar.addEventListener("click", enviarMensagem);
