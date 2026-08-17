@@ -545,6 +545,26 @@ main {
     clip-path: polygon(0 0, 0 100%, 100% 0);
 }
 
+/* ---------- Mensagens seguidas do mesmo remetente ---------- */
+/* A partir da 2ª mensagem em sequência (mesmo lado), o balão perde
+   a "ponta" e volta a ter o canto arredondado padrão. */
+
+.mensagem-recebida + .mensagem-recebida > .balao {
+    border-top-left-radius: 8px;
+}
+
+.mensagem-recebida + .mensagem-recebida > .balao::before {
+    display: none;
+}
+
+.mensagem-enviada + .mensagem-enviada > .balao {
+    border-top-right-radius: 8px;
+}
+
+.mensagem-enviada + .mensagem-enviada > .balao::before {
+    display: none;
+}
+
 .balao > p {
     font-size: 14px;
     color: var(--msg1);
