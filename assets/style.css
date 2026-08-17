@@ -285,6 +285,176 @@ input:hover {
     border-radius: 10px;
 }
 
+/* seção perfil */
+
+.conversas-container {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.secao-lateral.perfil-ativo .conversas-container 
+{
+    display: none;
+}
+
+.secao-lateral.perfil-ativo .perfil-container 
+{
+    display: grid;
+}
+
+/* perfil */
+
+.perfil-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto auto auto auto 1fr auto;
+    grid-template-areas: 
+    "titulo"
+    "foto"
+    "nome"
+    "recado"
+    "telefone"
+    "espaco"
+    "trocar";
+    overflow-y: auto;
+}
+
+.perfil-titulo {
+    grid-area: titulo;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.perfil-titulo > h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--msg1);
+}
+
+.perfil-foto-container {
+    grid-area: foto;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 30px 0;
+}
+
+.perfil-foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--fotoperfil);
+    object-fit: cover;
+}
+
+.perfil-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--icone2);
+}
+
+.perfil-nome {
+    grid-area: nome;
+}
+
+.perfil-recado {
+    grid-area: recado;
+}
+
+.perfil-telefone {
+    grid-area: telefone;
+}
+
+.perfil-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--zap);
+}
+
+.perfil-valor {
+    font-size: 16px;
+    color: var(--msg1);
+}
+
+.perfil-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.perfil-telefone-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icone-editar, 
+.icone-copiar,
+.icone-telefone {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.icone-editar:hover,
+.icone-copiar:hover {
+    opacity: 0,7;
+}
+
+.perfil-trocar {
+    grid-area: trocar;
+    padding: 20px 25px 25px 25px;
+}
+
+.perfil-trocar > h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--msg1);
+    margin-bottom: 15px;
+}
+
+.lista-perfis {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.perfis-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.perfil-item > img {
+    width: 560px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--fotoperfil);
+    object-fit: cover;
+}
+
+.perfil-item > span {
+    font-size: 13px;
+    color: var(--msg1);
+}
+
+.perfil-item:hover > img {
+    opacity: 0.85;
+}
+
 main {
     grid-column: 3 / 5;
     grid-row: 2 / 3;
