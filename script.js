@@ -66,6 +66,14 @@ function criarCardContato(contato) {
     
 }
 
+function renderizarListaContatos() {
+    listaContatosEl.innerHTML = "";
+    usuarioAtivo.contacts.forEach((contato) => {
+        listaContatosEl.appendChild(criarCardContato(contato));
+    });
+}
+
+
 function obterHoraAtual() {
     const agora = new Date();
     const horas = String(agora.getHours()).padStart(2, "0");
