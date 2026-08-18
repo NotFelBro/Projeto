@@ -42,6 +42,28 @@ function criarCardContato(contato) {
     const foto = document.createElement("img");
     foto.alt = contato.nome;
     foto.src = `./assets/imgs/${contato.image}`;
+
+    foto.addEventListener("error", () => foto.removeAttribute("src"));
+
+    const nome = document.createElement("span");
+    nome.classList.add("nome");
+    nome.textContent = contato.name;
+
+    const ultimaMensagem = contato.mensagem[contato.messages.length -1];
+
+    const hora = document.createElement("span");
+    hora.classList.add("hora");
+    hora.textContent = ultimaMensagem ? ultimaMensagem.time : "";
+
+    const msg = document.createElement("span");
+    msg.classList.add("hora");
+    msg.textContent = ultimaMensagem ? ultimaMensagem.content : "";
+
+    card.append(foto, nome, hora, msg);
+    card.addEventListener("click", () => abrirConversa(contato, card));
+
+    return card;
+    
 }
 
 function obterHoraAtual() {
