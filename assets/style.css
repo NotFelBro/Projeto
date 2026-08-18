@@ -465,6 +465,64 @@ main {
     overflow: hidden;
 }
 
+.oculto {
+    display: none !important;
+}
+
+.chat-header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    background-color: var(--header);
+    border-bottom: 1px solid var(--icone2);
+}
+
+.chat-header-foto {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--fotoperfil);
+    object-fit: cover;
+}
+
+.chat-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header-nome {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--msg1);
+}
+
+.chat-header-status {
+    font-size: 12px;
+    color: var(--msgs2);
+}
+
+.chat-vazio {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.chat-vazio > p {
+    max-width: 300px;
+    font-size: 15px;
+    color: var(--msgs2);
+}
+
+.card-contato.ativo {
+    background-color: var(--icone2);
+    border-radius: 10px;
+}
+
 .chat-mensagens {
     flex: 1 1 auto;
     min-height: 0;

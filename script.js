@@ -1,4 +1,4 @@
-import { indiceUsuario, listarMensagens } from "./assets/contatos.js";
+import { indiceUsuario, listarMensagens, usuarios } from "./assets/contatos.js";
 import { listarUsuarios } from "./script.js";
 
 export {usuarios, listarUsuarios, indiceUsuario, listarMensagens} from "./assets/contatos.js"; {
@@ -22,10 +22,27 @@ function fecharPerfil() {
 iconePerfilNav.addEventListener("click", abrirPerfil);
 iconeConversas.addEventListener("click", fecharPerfil);
 
-const formEnviarMensagem = document.querySelector(".chat-input");
-const campoMensagem = formEnviarMensagem.querySelector("input[type='text]");
+//==========================================================
+const usuarioAtivo = usuarios["whats-users"][0];
+
+const listaContatosEl = document.querySelector(".lista-contatos");
+const chatHeaderEl = document.querySelector(".chat-header");
+const chatHeaderFoto = document.querySelector(".chat-header-foto");
+const chatHEaderNome = document.querySelector(".chat-header-nome");
+const chatHeaderStatus = document.querySelector(".chat-header-status");
+const chatVazioEl = document.querySelector(".chat-vazio");
 const listaMensagens = document.querySelector(".chat-mensagens");
-const botaoEnviar = document.querySelector(".icone-enviar");
+
+let conversaAtual = null;
+
+function criarCardContato(contato) {
+    const card = document.createElement("div");
+    card.classList.add("card-contato");
+
+    const foto = document.createElement("img");
+    foto.alt = contato.nome;
+    foto.src = `./assets/imgs/${contato.image}`;
+}
 
 function obterHoraAtual() {
     const agora = new Date();
