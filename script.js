@@ -73,6 +73,28 @@ function renderizarListaContatos() {
     });
 }
 
+function criarBalaoMensagem(mensagem) {
+    const tipo = mensagem.sendar === "me" ? "mensagem-enviada" : "mensagem-recebida";
+
+    const elMensagem = document.createElement("div");
+    elMensagem.classList.add("mensagem", tipo);
+
+    const balao = document.createElement("div");
+    balao.classList("balao");
+
+    const paragrafo = document.createElement("p");
+    paragrafo.textContent = mensagem.content;
+
+    const hora = document.createElement("span");
+    hora.classList.add("hora-msg");
+    hora.textContent = mensagem.time;
+
+    balao.append(paragrafo, hora);
+    elMensagem.appendChild(balao);
+
+    return elMensagem;
+}
+
 
 function obterHoraAtual() {
     const agora = new Date();
