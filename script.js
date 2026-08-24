@@ -38,6 +38,18 @@ const listaMensagens = document.querySelector(".chat-mensagens");
 
 let conversaAtual = null;
 
+// contatos cuja conversa já foi aberta pelo menos uma vez (marca como "lida")
+const contatosLidos = new Set();
+
+function contarMensagensNaoLidas(contato) {
+    let contagem = 0;
+    for (let i = contato.messages.length - 1; i >= 0; i--) {
+        if (contato.messages[i].sender === "me") break;
+        contagem++;
+    }
+    return contagem;
+}
+
 function criarCardContato(contato) {
     const card = document.createElement("div");
     card.classList.add("card-contato");
@@ -62,6 +74,17 @@ function criarCardContato(contato) {
     msg.textContent = ultimaMensagem ? ultimaMensagem.content : "";
 
     card.append(foto, nome, hora, msg);
+
+    const naoLidas = contatosLidos.has(contato) ? 0 : contarMensagensNaoLidas(contato);
+    if (naoLidas > 0) {
+        card.classList.add("nao-lida");
+
+        const badge = document.createElement("span");
+        badge.classList.add("badge");
+        badge.textContent = naoLidas > 99 ? "99+" : String(naoLidas);
+        card.appendChild(badge);
+    }
+
     card.addEventListener("click", () => abrirConversa(contato, card));
 
     return card;
@@ -174,6 +197,12 @@ function renderizarMensagens(contato) {
 
 function abrirConversa(contato, elementoCard) {
     conversaAtual = contato;
+
+    // marca como lida: some com o destaque de negrito e o badge de contagem
+    contatosLidos.add(contato);
+    elementoCard.classList.remove("nao-lida");
+    const badge = elementoCard.querySelector(".badge");
+    if (badge) badge.remove();
 
     // destaca o contato selecionado na lista
     listaContatosEl

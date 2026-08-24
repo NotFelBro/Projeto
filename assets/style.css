@@ -258,13 +258,26 @@ input:hover {
     background-color: var(--zap);
     color: var(--section);
     font-size: 11px;
+    font-weight: 600;
     border-radius: 50%;
-    width: 18px;
+    min-width: 18px;
+    width: fit-content;
     height: 18px;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-self: end;
+}
+
+.card-contato.nao-lida > .msg {
+    color: var(--msg1);
+    font-weight: 600;
+}
+
+.card-contato.nao-lida > .hora {
+    color: var(--zap);
+    font-weight: 600;
 }
 
 .card-contato:hover {
