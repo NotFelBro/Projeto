@@ -42,6 +42,9 @@ let conversaAtual = null;
 // contatos cuja conversa já foi aberta pelo menos uma vez (marca como "lida")
 const contatosLidos = new Set();
 
+// referência do card de cada contato na lista, pra poder atualizar o preview sem re-renderizar tudo
+const cardsPorContato = new Map();
+
 function contarMensagensNaoLidas(contato) {
     let contagem = 0;
     for (let i = contato.messages.length - 1; i >= 0; i--) {
@@ -107,8 +110,11 @@ function criarCardContato(contato) {
 
 function renderizarListaContatos() {
     listaContatosEl.innerHTML = "";
+    cardsPorContato.clear();
     usuarioAtivo.contacts.forEach((contato) => {
-        listaContatosEl.appendChild(criarCardContato(contato));
+        const card = criarCardContato(contato);
+        cardsPorContato.set(contato, card);
+        listaContatosEl.appendChild(card);
     });
     atualizarBadgeConversas();
 }
@@ -280,6 +286,15 @@ function enviarMensagem(evento) {
     conversaAtual.messages.push(novaMensagem);
 
     listaMensagens.appendChild(criarBalaoMensagem(novaMensagem));
+
+    // atualiza o preview (mensagem + horário) do contato na lista da esquerda
+    const cardContato = cardsPorContato.get(conversaAtual);
+    if (cardContato) {
+        const msgEl = cardContato.querySelector(".msg");
+        const horaEl = cardContato.querySelector(".hora");
+        if (msgEl) msgEl.textContent = novaMensagem.content;
+        if (horaEl) horaEl.textContent = novaMensagem.time;
+    }
 
     campoMensagem.value = "";
     campoMensagem.focus();
