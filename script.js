@@ -29,6 +29,7 @@ const perfilTelefoneEl = document.querySelector(".perfil-valor-telefone");
 const listaPerfisEl = document.querySelector(".lista-perfis");
 
 const listaContatosEl = document.querySelector(".lista-contatos");
+const badgeConversasEl = document.querySelector(".badge-nav");
 const chatHeaderEl = document.querySelector(".chat-header");
 const chatHeaderFoto = document.querySelector(".chat-header-foto");
 const chatHeaderNome = document.querySelector(".chat-header-nome");
@@ -48,6 +49,20 @@ function contarMensagensNaoLidas(contato) {
         contagem++;
     }
     return contagem;
+}
+
+function atualizarBadgeConversas() {
+    const total = usuarioAtivo.contacts.reduce((soma, contato) => {
+        if (contatosLidos.has(contato)) return soma;
+        return soma + contarMensagensNaoLidas(contato);
+    }, 0);
+
+    if (total > 0) {
+        badgeConversasEl.textContent = total > 99 ? "99+" : String(total);
+        badgeConversasEl.classList.remove("oculto");
+    } else {
+        badgeConversasEl.classList.add("oculto");
+    }
 }
 
 function criarCardContato(contato) {
@@ -95,6 +110,7 @@ function renderizarListaContatos() {
     usuarioAtivo.contacts.forEach((contato) => {
         listaContatosEl.appendChild(criarCardContato(contato));
     });
+    atualizarBadgeConversas();
 }
 
 // ---------- Perfil ativo e troca de perfil ----------
@@ -203,6 +219,7 @@ function abrirConversa(contato, elementoCard) {
     elementoCard.classList.remove("nao-lida");
     const badge = elementoCard.querySelector(".badge");
     if (badge) badge.remove();
+    atualizarBadgeConversas();
 
     // destaca o contato selecionado na lista
     listaContatosEl

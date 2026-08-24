@@ -74,6 +74,53 @@ nav {
     background-color: var(--icone2);
 }
 
+.icone-conversas-wrapper {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    padding: 9px;
+    box-sizing: content-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.icone-conversas-wrapper:hover {
+    background-color: var(--icone2);
+}
+
+.icone-conversas-wrapper > .icone-conversas {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+}
+
+.icone-conversas-wrapper > .icone-conversas:hover {
+    background-color: transparent;
+}
+
+.badge-nav {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 2px solid var(--nav);
+    background-color: var(--zap);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .icone-perfil-nav {
     width: 30px !important;
     height: 30px !important;
