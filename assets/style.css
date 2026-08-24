@@ -435,6 +435,11 @@ input:hover {
     align-items: center;
     gap: 6px;
     cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.perfil-item:active {
+    transform: scale(0.95);
 }
 
 .perfil-item > img {

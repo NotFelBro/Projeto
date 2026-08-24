@@ -9,7 +9,7 @@ export const usuarios = {
         end: "null",
       },
       gender: "male",
-      "profile-image": "",
+      "profile-image": "https://i.pravatar.cc/150?img=13",
       number: "11987876567",
       background: "#fccc5b",
       contacts: [
@@ -222,7 +222,7 @@ export const usuarios = {
         end: "null",
       },
       gender: "male",
-      "profile-image": "",
+      "profile-image": "https://i.pravatar.cc/150?img=14",
       number: "11966578996",
       background: "#fccc5b",
       contacts: [
@@ -435,7 +435,7 @@ export const usuarios = {
         end: "null",
       },
       gender: "female",
-      "profile-image": "",
+      "profile-image": "https://i.pravatar.cc/150?img=45",
       number: "11955577796",
       background: "#cc5bfc",
       contacts: [
@@ -561,7 +561,7 @@ export const usuarios = {
         end: "null",
       },
       gender: "male",
-      "profile-image": "",
+      "profile-image": "https://i.pravatar.cc/150?img=51",
       number: "1194457796",
       background: "#c00bfc",
       contacts: [

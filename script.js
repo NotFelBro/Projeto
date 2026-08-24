@@ -21,7 +21,13 @@ iconeConversas.addEventListener("click", fecharPerfil);
 
 // ---------- Conta ativa e lista de contatos ----------
 
-const usuarioAtivo = usuarios["whats-users"][0];
+let usuarioAtivo = usuarios["whats-users"][0];
+
+const perfilFotoEl = document.querySelector(".perfil-foto");
+const perfilNomeEl = document.querySelector(".perfil-valor-nome");
+const perfilTelefoneEl = document.querySelector(".perfil-valor-telefone");
+const fotoHeaderEl = document.querySelector(".foto-contato-header");
+const listaPerfisEl = document.querySelector(".lista-perfis");
 
 const listaContatosEl = document.querySelector(".lista-contatos");
 const chatHeaderEl = document.querySelector(".chat-header");
@@ -67,6 +73,75 @@ function renderizarListaContatos() {
     usuarioAtivo.contacts.forEach((contato) => {
         listaContatosEl.appendChild(criarCardContato(contato));
     });
+}
+
+// ---------- Perfil ativo e troca de perfil ----------
+
+function formatarTelefone(numero) {
+    const digitos = String(numero).replace(/\D/g, "");
+    const ddd = digitos.slice(0, 2);
+    const resto = digitos.slice(2);
+
+    if (resto.length === 9) {
+        return `+55 ${ddd} ${resto.slice(0, 5)} ${resto.slice(5)}`;
+    }
+    if (resto.length === 8) {
+        return `+55 ${ddd} ${resto.slice(0, 4)} ${resto.slice(4)}`;
+    }
+    return `+55 ${ddd} ${resto}`;
+}
+
+function renderizarPerfilAtivo() {
+    const foto = usuarioAtivo["profile-image"] || "";
+
+    iconePerfilNav.src = foto;
+    fotoHeaderEl.src = foto;
+    perfilFotoEl.src = foto;
+    perfilNomeEl.textContent = usuarioAtivo.account;
+    perfilTelefoneEl.textContent = formatarTelefone(usuarioAtivo.number);
+}
+
+function criarCardPerfil(usuario) {
+    const item = document.createElement("div");
+    item.classList.add("perfil-item");
+
+    const foto = document.createElement("img");
+    foto.src = usuario["profile-image"] || "";
+    foto.alt = usuario.nickname;
+
+    const nome = document.createElement("span");
+    nome.textContent = usuario.nickname;
+
+    item.append(foto, nome);
+    item.addEventListener("click", () => trocarPerfil(usuario.id));
+
+    return item;
+}
+
+function renderizarListaPerfis() {
+    listaPerfisEl.innerHTML = "";
+    usuarios["whats-users"]
+        .filter((usuario) => usuario.id !== usuarioAtivo.id)
+        .forEach((usuario) => listaPerfisEl.appendChild(criarCardPerfil(usuario)));
+}
+
+function trocarPerfil(novoUsuarioId) {
+    const novoUsuario = usuarios["whats-users"].find((usuario) => usuario.id === novoUsuarioId);
+    if (!novoUsuario || novoUsuario === usuarioAtivo) return;
+
+    usuarioAtivo = novoUsuario;
+    conversaAtual = null;
+
+    // volta para a lista de conversas do novo perfil
+    fecharPerfil();
+    chatHeaderEl.classList.add("oculto");
+    listaMensagens.classList.add("oculto");
+    listaMensagens.innerHTML = "";
+    chatVazioEl.classList.remove("oculto");
+
+    renderizarPerfilAtivo();
+    renderizarListaContatos();
+    renderizarListaPerfis();
 }
 
 function criarBalaoMensagem(mensagem) {
@@ -123,7 +198,9 @@ function abrirConversa(contato, elementoCard) {
     renderizarMensagens(contato);
 }
 
+renderizarPerfilAtivo();
 renderizarListaContatos();
+renderizarListaPerfis();
 
 // ---------- Envio de mensagem ----------
 
