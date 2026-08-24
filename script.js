@@ -26,7 +26,6 @@ let usuarioAtivo = usuarios["whats-users"][0];
 const perfilFotoEl = document.querySelector(".perfil-foto");
 const perfilNomeEl = document.querySelector(".perfil-valor-nome");
 const perfilTelefoneEl = document.querySelector(".perfil-valor-telefone");
-const fotoHeaderEl = document.querySelector(".foto-contato-header");
 const listaPerfisEl = document.querySelector(".lista-perfis");
 
 const listaContatosEl = document.querySelector(".lista-contatos");
@@ -95,7 +94,6 @@ function renderizarPerfilAtivo() {
     const foto = usuarioAtivo["profile-image"] || "";
 
     iconePerfilNav.src = foto;
-    fotoHeaderEl.src = foto;
     perfilFotoEl.src = foto;
     perfilNomeEl.textContent = usuarioAtivo.account;
     perfilTelefoneEl.textContent = formatarTelefone(usuarioAtivo.number);
@@ -197,6 +195,17 @@ function abrirConversa(contato, elementoCard) {
 
     renderizarMensagens(contato);
 }
+
+// ---------- Filtros de conversas (Tudo / Não lidas / Favoritos / Grupos) ----------
+
+const botoesFiltro = document.querySelectorAll(".botoes > button");
+
+botoesFiltro.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        botoesFiltro.forEach((b) => b.classList.remove("ativo"));
+        botao.classList.add("ativo");
+    });
+});
 
 renderizarPerfilAtivo();
 renderizarListaContatos();
